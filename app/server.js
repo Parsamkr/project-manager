@@ -24,7 +24,9 @@ module.exports = class Application {
   }
   configDatabase(DB_URL) {
     const mongoose = require("mongoose");
-    mongoose.connect(DB_URL, (error) => {
+    mongoose.set("strictQuery", true);
+
+    mongoose.connect(DB_URL).catch((error) => {
       if (error) throw error;
       return console.log("Successfully Connected to DB ...");
     });
