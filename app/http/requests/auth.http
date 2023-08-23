@@ -1,0 +1,11 @@
+###register request
+Post http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "username":"parsa1",
+    "email":"parsa.mokhtarpour1@yahoo.com",
+    "mobile":"09116688224",
+    "password":"Parsa1376",
+    "confirm_password":"Parsa1376"
+}
