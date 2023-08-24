@@ -12,4 +12,12 @@ function tokenGenerator(payload) {
   return token;
 }
 
-module.exports = { hashString, tokenGenerator };
+function jwtTokenValidator(token) {
+  const result = jwt.verify(token, process.env.SECRET_KEY);
+  if (!result?.username) {
+    throw { status: 401, message: "please login to your account" };
+  }
+  return result;
+}
+
+module.exports = { hashString, tokenGenerator, jwtTokenValidator };
