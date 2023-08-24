@@ -2,11 +2,11 @@ const { body } = require("express-validator");
 const { UserModel } = require("../../models/user");
 function registerValidator() {
   return [
-    body("username").custom(async (value, context) => {
-      if (value) {
+    body("username").custom(async (username, context) => {
+      if (username) {
         const usernameRegex = /^[a-z]+[a-z0-9\_\.]{2,25}/gi;
-        if (usernameRegex.test(value)) {
-          const user = await UserModel.findOne({ username: value });
+        if (usernameRegex.test(username)) {
+          const user = await UserModel.findOne({ username });
           if (user) throw "username already used!";
           return true;
         }
@@ -45,4 +45,22 @@ function registerValidator() {
   ];
 }
 
-module.exports = { registerValidator };
+function loginValidator() {
+  return [
+    body("username")
+      .notEmpty()
+      .withMessage("username cannot be empty!")
+      .custom((username, context) => {
+        const usernameRegex = /^[a-z]+[a-z0-9\_\.]{2,25}/gi;
+        if (usernameRegex.test(username)) {
+          return true;
+        }
+        throw "username is wrong";
+      }),
+    body("password")
+      .isLength({ min: 6, max: 16 })
+      .withMessage("password should be between 6 and 16 characters"),
+  ];
+}
+
+module.exports = { registerValidator, loginValidator };

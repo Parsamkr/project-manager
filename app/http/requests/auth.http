@@ -9,3 +9,13 @@ content-type: application/json
     "password":"Parsa1376",
     "confirm_password":"Parsa1376"
 }
+
+###login request
+Post http://localhost:3000/auth/login
+content-type: application/json
+Authorization: Bearer {{$dotenv token}}
+
+{
+    "username":"parsa",
+    "password":"Parsa1376"
+}
