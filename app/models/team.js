@@ -3,8 +3,8 @@ const TeamSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
-    users: { type: [mongoose.type.ObjectId], default: [] },
-    owner: { type: mongoose.type.ObjectId, required: true },
+    users: { type: [mongoose.Types.ObjectId], default: [] },
+    owner: { type: mongoose.Types.ObjectId, required: true },
   },
   { timestamps: true }
 );

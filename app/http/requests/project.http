@@ -1,10 +1,9 @@
 ###create project
-POST  http://localhost:3000/user/profile
+POST  http://localhost:3000/project/create
 Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 
 {
-    "first_name" : "Parsa",
-    "last_name" : "Mokhtarpour",
-    "skills" : ["programming" , "NODEJS" , "EXPRESSJS"]
+    "title" : "title of new project",
+    "text" : "text of new project for project manager of nodejs course"
 }

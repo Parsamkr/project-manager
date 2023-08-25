@@ -7,8 +7,8 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       default: "/defaults/default.webp",
     },
-    owner: { type: mongoose.type.ObjectId, required: true },
-    team: { type: mongoose.type.ObjectId },
+    owner: { type: mongoose.Types.ObjectId, required: true },
+    team: { type: mongoose.Types.ObjectId },
     Private: { type: Boolean, default: true },
   },
   { timestamps: true }
