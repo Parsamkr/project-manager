@@ -1,4 +1,5 @@
 const { ProjectModel } = require("../../models/project");
+const { findProject } = require("../../modules/functions");
 
 class ProjectController {
   async createProject(req, res, next) {
@@ -33,11 +34,45 @@ class ProjectController {
       next(error);
     }
   }
-  getProjectById() {}
+
+  async getProjectById(req, res, next) {
+    try {
+      const owner = req.user._id;
+      const projectID = req.params.id;
+      const project = await findProject(projectID, owner);
+      return res.status(200).json({ status: 200, success: true, project });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async removeProject(req, res, next) {
+    try {
+      const owner = req.user._id;
+      const projectID = req.params.id;
+      await findProject(projectID, owner);
+      const deleteProjectResult = await ProjectModel.deleteOne({
+        _id: projectID,
+      });
+      if (deleteProjectResult.deletedCount == 0) {
+        throw {
+          status: 400,
+          success: false,
+          message: "project failed to delete",
+        };
+      }
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "project deleted successfully",
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   getProjectOfTeam() {}
   getProjectOfUser() {}
   updateProject() {}
-  removeProject() {}
 }
 
 module.exports = { ProjectController: new ProjectController() };
