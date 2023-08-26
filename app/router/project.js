@@ -16,5 +16,6 @@ router.post(
   uploadFile,
   ProjectController.createProject
 );
+router.get("get")
 
 module.exports = { projectRoutes: router };
