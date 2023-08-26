@@ -50,10 +50,15 @@ async function findProject(projectID, owner) {
   return project;
 }
 
+function createLinkForFiles(fileAddress, req) {
+  return req.protocol + "://" + req.get("host") + "/" + fileAddress;
+}
+
 module.exports = {
   hashString,
   tokenGenerator,
   jwtTokenValidator,
   createPathDirectory,
   findProject,
+  createLinkForFiles,
 };

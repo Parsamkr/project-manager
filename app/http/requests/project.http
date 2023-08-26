@@ -5,7 +5,8 @@ Content-Type: application/json
 
 {
     "title" : "title of new project",
-    "text" : "text of new project for project manager of nodejs course"
+    "text" : "text of new project for project manager of nodejs course",
+    "tags" : ["tag1","tag2"]
 }
 
 ###get list of projects
@@ -13,13 +14,20 @@ GET  http://localhost:3000/project/list
 Authorization: Bearer {{$dotenv token}}
 
 ###get project by id
-GET  http://localhost:3000/project/64e8d3401bed6357f51b7152
+GET  http://localhost:3000/project/64e8eecf76009b3f3f81f52e
 Authorization: Bearer {{$dotenv token}}
 
 ###remove project by id
-DELETE  http://localhost:3000/project/remove/64e8d3401bed6357f51b7152
+DELETE  http://localhost:3000/project/remove/64e8efc2c8ee5b873084f184
 Authorization: Bearer {{$dotenv token}}
 
-###edit projectby id
-PATCH  http://localhost:3000/project/edit/64e8d3401bed6357f51b7152
+###edit project by id
+PUT  http://localhost:3000/project/edit/64e8eecf76009b3f3f81f52e
 Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+{
+    "title" : "title of new project",
+    "text" : "text of new project for project manager of nodejs course",
+    "tags" : [ "new tag 1" , "new tag 2" ]
+}
