@@ -8,6 +8,9 @@ function createProjectValidator() {
       .withMessage("project text cannot be empty")
       .isLength({ min: 20 })
       .withMessage("project text cannot be less than 20 characters"),
+    body("tags")
+      .isArray({ min: 0, max: 10 })
+      .withMessage("maximum number of hashtags are 10"),
   ];
 }
 
