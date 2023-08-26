@@ -26,14 +26,14 @@ router.get(
   expressValidatorMapper,
   ProjectController.getProjectById
 );
-router.get(
+router.delete(
   "/remove/:id",
   checkLogin,
   mongoIDValidator(),
   expressValidatorMapper,
   ProjectController.removeProject
 );
-router.get(
+router.patch(
   "/edit/:id",
   checkLogin,
   mongoIDValidator(),

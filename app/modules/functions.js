@@ -45,7 +45,8 @@ function createPathDirectory() {
 
 async function findProject(projectID, owner) {
   const project = await ProjectModel.findOne({ owner, _id: projectID });
-  if (!project) throw { status: 404, message: "you have no projects" };
+  if (!project)
+    throw { status: 404, message: "sorry ! we don't have this project" };
   return project;
 }
 

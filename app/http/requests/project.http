@@ -7,3 +7,19 @@ Content-Type: application/json
     "title" : "title of new project",
     "text" : "text of new project for project manager of nodejs course"
 }
+
+###get list of projects
+GET  http://localhost:3000/project/list
+Authorization: Bearer {{$dotenv token}}
+
+###get project by id
+GET  http://localhost:3000/project/64e8d3401bed6357f51b7152
+Authorization: Bearer {{$dotenv token}}
+
+###remove project by id
+DELETE  http://localhost:3000/project/remove/64e8d3401bed6357f51b7152
+Authorization: Bearer {{$dotenv token}}
+
+###edit projectby id
+PATCH  http://localhost:3000/project/edit/64e8d3401bed6357f51b7152
+Authorization: Bearer {{$dotenv token}}
