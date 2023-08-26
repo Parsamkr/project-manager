@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const fs = require("fs");
+const { ProjectModel } = require("../models/project");
 
 function hashString(str) {
   const salt = bcrypt.genSaltSync(10);
@@ -42,9 +43,16 @@ function createPathDirectory() {
   return path.join("public", "upload", Year, Month, Day);
 }
 
+async function findProject(projectID, owner) {
+  const project = await ProjectModel.findOne({ owner, _id: projectID });
+  if (!project) throw { status: 404, message: "you have no projects" };
+  return project;
+}
+
 module.exports = {
   hashString,
   tokenGenerator,
   jwtTokenValidator,
   createPathDirectory,
+  findProject,
 };
